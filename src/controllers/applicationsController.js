@@ -43,11 +43,11 @@ class ApplicationController {
     try {
       const { id } = req.body;
       
-      const approvedApplication = await Application.update({
+      await Application.update({
         status: 'approved'
       }, { where: {id}});
   
-      return res.json(approvedApplication); 
+      return res.json({ message: 'Application approved successfully' });
     } catch (e) {
       return res.status(500).json({message: 'Can not approve application'});
     }
@@ -57,11 +57,11 @@ class ApplicationController {
     try {
       const { id } = req.body;
 
-      const rejectedApplication = await Application.update({
+      await Application.update({
         status: 'rejected'
       }, { where: {id}});
 
-      return res.json(rejectedApplication); 
+      return res.json({ message: 'Application rejected successfully' });
     } catch (e) {
       return res.status(500).json({message: 'Can not reject application'});
     }

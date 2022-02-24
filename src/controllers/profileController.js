@@ -65,7 +65,7 @@ class ProfileController {
       if (roleId === ROLES.candidate) {
         const { firstName, lastName, phone, skills, softSkills } = req.body;
         
-        const updatedCandidate = await Candidate.update({
+        await Candidate.update({
           firstName,
           lastName,
           phone,
@@ -77,13 +77,13 @@ class ProfileController {
           }
         });
     
-        return res.json(updatedCandidate);
+        return res.json({ message: 'Profile data changed successfully' });
       }
 
       if (roleId === ROLES.company) {
         const { companyName, description, phone, logoUrl } = req.body;
         
-        const updatedCompany = await Company.update({
+        await Company.update({
           companyName,
           description,
           phone,
@@ -94,13 +94,13 @@ class ProfileController {
           }
         });
     
-        return res.json(updatedCompany);
+        return res.json({ message: 'Profile data changed successfully' });
       }
 
       if (roleId === ROLES.recruiter) {
         const { firstName, lastName, phone } = req.body;
         
-        const updatedRecruiter = await Recruiter.update({
+        await Recruiter.update({
           firstName,
           lastName,
           phone,
@@ -110,7 +110,7 @@ class ProfileController {
           }
         });
     
-        return res.json(updatedRecruiter);
+        return res.json({ message: 'Profile data changed successfully' });
       }
     } catch (e) {
       return res.status(500).json({message: 'Candidate updated'});
